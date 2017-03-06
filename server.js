@@ -17,13 +17,21 @@ mjAPI.config({
 });
 mjAPI.start();
 
-var yourMath = '\frac{1}{e}';
+function fsWriteCallback(err){
+	if (err){
+		return console.log(err);
+	}
+
+	console.log('File successfully written.');
+}
+
+var yourMath = String.raw`\frac{1}{e}`;
 mjAPI.typeset({
 	math: yourMath,
 	format: "TeX",
 	svg: true
 }, function (data) {
 	if (!data.errors) {
-		fs.writeFile("data.svg", data.svg);
+		fs.writeFile("data.svg", data.svg, fsWriteCallback);
 	}
 });
