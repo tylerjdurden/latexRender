@@ -21,10 +21,7 @@ var yourMath = '\frac{1}{e}';
 mjAPI.typeset({
 	math: yourMath,
 	format: "TeX",
-	svg: true,
-	inputs : ["TeX"],
-	renderer: "SVG",
-	svgNode: true
+	svg: true
 }, function (data) {
 	if (!data.errors) {
 		fs.writeFile("data.svg", data.svg);
