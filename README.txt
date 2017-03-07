@@ -1,1 +1,1 @@
-A web app which renders LaTeX to SVG, and also does stuff in Telegram.
+A web app which renders LaTeX to PNG, and also does stuff in Telegram.
