@@ -9,6 +9,7 @@ TODO: telegram, error handling.
 */
 
 // Test the rendering to svg.
+/*
 var input = String.raw`\frac{1}{e}`;
 renderLatex.tex2svg(input, function(str){
 	fs.writeFile("data.svg", str, function (err){
@@ -18,14 +19,16 @@ renderLatex.tex2svg(input, function(str){
 		console.log('File successfully written.');
 	});
 });
+*/
 
 /*
-This takes a querystring input=<tex string> and returns an svg rendering of that input.
+This takes a querystring input=<tex string> and returns an png rendering of that input.
 */
 app.get('/', function (req, res) {
 	res.setHeader('Content-Type', 'image/png');
 	// http://stackoverflow.com/a/17008027/5415895
 	renderLatex.tex2svg(req.query.input, function(s){
+		// Transform the svg to png.
 		svg2png(s, {width: 300, height: 400}).then(buffer => res.send(buffer)).catch(e => console.error(e));
 	});
 });
