@@ -6,7 +6,7 @@ const svg2png = require("svg2png");
 var app = express();
 
 // Default landing page is index.html.
-app.use(express.static('static'));
+app.use("/", express.static(__dirname + '/static'));
 
 /*
 This takes a querystring input=<tex string> and returns an png rendering of that input.

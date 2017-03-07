@@ -1,9 +1,12 @@
 {
   "name": "latexRender",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "src/server.js",
   "author": "Matt Gaikema",
   "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js"
+  },
   "dependencies": {
     "express": "^4.15.2",
     "mathjax": "^2.7.0",
