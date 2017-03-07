@@ -8,6 +8,7 @@
     "express": "^4.15.2",
     "mathjax": "^2.7.0",
     "mathjax-node": "^1.0.0-beta.0",
-    "node-telegram-bot-api": "^0.27.0"
+    "node-telegram-bot-api": "^0.27.0",
+    "svg2png": "^4.1.1"
   }
 }

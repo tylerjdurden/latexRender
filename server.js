@@ -1,6 +1,7 @@
-var fs = require('fs');
-var renderLatex = require('./renderLatex.js');
-var express = require('express');
+const fs = require('fs');
+const renderLatex = require('./renderLatex.js');
+const express = require('express');
+const svg2png = require("svg2png");
 var app = express();
 
 /*
@@ -22,10 +23,10 @@ renderLatex.tex2svg(input, function(str){
 This takes a querystring input=<tex string> and returns an svg rendering of that input.
 */
 app.get('/', function (req, res) {
-	res.setHeader('Content-Type', 'image/svg+xml');
+	res.setHeader('Content-Type', 'image/png');
 	// http://stackoverflow.com/a/17008027/5415895
 	renderLatex.tex2svg(req.query.input, function(s){
-		res.send(s);
+		svg2png(s, {width: 300, height: 400}).then(buffer => res.send(buffer)).catch(e => console.error(e));
 	});
 });
 
