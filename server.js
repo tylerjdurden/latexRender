@@ -4,10 +4,7 @@ var express = require('express');
 var app = express();
 
 /*
-TODO:
-1. Create a module for converting LaTeX to SVG. DONE
-2. Create a webserver with a url endpoint that takes a TeX string as a GET request and returns an SVG string. http://stackoverflow.com/a/17008027/5415895
-3. Something something telegram.
+TODO: telegram, error handling.
 */
 
 // Test the rendering to svg.
@@ -21,11 +18,13 @@ renderLatex.tex2svg(input, function(str){
 	});
 });
 
-
-// This returns an svg 1/e.
+/*
+This takes a querystring input=<tex string> and returns an svg rendering of that input.
+*/
 app.get('/', function (req, res) {
 	res.setHeader('Content-Type', 'image/svg+xml');
-	renderLatex.tex2svg(input, function(s){
+	// http://stackoverflow.com/a/17008027/5415895
+	renderLatex.tex2svg(req.query.input, function(s){
 		res.send(s);
 	});
 });
