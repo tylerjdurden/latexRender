@@ -1,8 +1,13 @@
 var mjAPI = require("mathjax-node");
 
-function tex2svg(texString) {
-	console.log('help');
-	console.log(texString);
+/**
+ * A function which takes a latex string and a callback,
+ * and executes the callback with the svg string as argument.
+ * 
+ * @param {string} texString 
+ * @param {function} callback 
+ */
+function tex2svg(texString, callback) {
 	mjAPI.config({
 		MathJax: {
 			SVG : {
@@ -28,7 +33,7 @@ function tex2svg(texString) {
 			For some reason I can only view the image in the browser.
 			I cannot see it with Ubuntu's image viewer.
 			*/
-			return data.svg;
+			 callback(data.svg);
 		}
 		else
 			console.error(data.errors);

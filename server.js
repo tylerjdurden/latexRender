@@ -8,13 +8,13 @@ TODO:
 3. Something something telegram.
 */
 
-
-function fsWriteCallback(err){
-	if (err){
-		return console.log(err);
-	}
-	console.log('File successfully written.');
-}
+// Test the rendering to svg.
 var input = String.raw`\frac{1}{e}`;
-var str = renderLatex.tex2svg(input);
-fs.writeFile("data.svg", str, fsWriteCallback);
+renderLatex.tex2svg(input, function(str){
+	fs.writeFile("data.svg", str, function (err){
+		if (err){
+			return console.log(err);
+		}
+		console.log('File successfully written.');
+	});
+});
