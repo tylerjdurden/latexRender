@@ -1,5 +1,5 @@
-var mjAPI = require("mathjax-node");
 var fs = require('fs');
+var renderLatex = require('./renderLatex.js');
 
 /*
 TODO:
@@ -8,41 +8,13 @@ TODO:
 3. Something something telegram.
 */
 
-mjAPI.config({
-	MathJax: {
-		SVG : {
-			scale: 240,
-			font : "STIX-Web",
-			linebreaks: { automatic: true },
-			tex2jax: { 
-				inlineMath: [['$','$'], ['\\(','\\)']],
-			}
-		}
-	}
-});
-mjAPI.start();
 
 function fsWriteCallback(err){
 	if (err){
 		return console.log(err);
 	}
-
 	console.log('File successfully written.');
 }
-
-var yourMath = String.raw`\frac{1}{e}`;
-console.log(yourMath);
-mjAPI.typeset({
-	math: yourMath,
-	format: "TeX",
-	svg: true,
-	width: 5
-}, function (data) {
-	if (!data.errors) {
-		/*
-		For some reason I can only view the image in the browser.
-		I cannot see it with Ubuntu's image viewer.
-		*/
-		fs.writeFile("data.svg", data.svg, fsWriteCallback);
-	}
-});
+var input = String.raw`\frac{1}{e}`;
+var str = renderLatex.tex2svg(input);
+fs.writeFile("data.svg", str, fsWriteCallback);
