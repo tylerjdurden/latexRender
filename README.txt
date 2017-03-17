@@ -1,1 +1,0 @@
-A web app which renders LaTeX to PNG, and also does stuff in Telegram.
